@@ -2,7 +2,7 @@ let searchBtn = document.getElementById("search-btn");
 let countryInp = document.getElementById("country-inp");
 
 searchBtn.addEventListener("click", () => {
-    let countryName = "India";
+    let countryName = countryInp.value;
     let finalURL =`https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
     console.log(finalURL);
     fetch(finalURL)
@@ -55,5 +55,13 @@ searchBtn.addEventListener("click", () => {
         </div>
         `;
         
+    })
+    .catch(() => {
+        if (countryName.length == 0) {
+            results.innerHTML = `<h3>The input field cannot be empty</h3>`;
+        }
+        else{
+            results.innerHTML =`<h3>Please enter a valid country name.</h3>`;
+        }
     });
 });
